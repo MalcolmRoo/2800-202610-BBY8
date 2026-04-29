@@ -14,7 +14,7 @@ function accessCamera() {
         VIDEO.srcObject = signal;
         VIDEO.play();
 
-        VIDEO,onloadeddata = function() {
+        VIDEO.onloadeddata = function() {
             updateCanvas();
         }
     }).catch(function(err){
