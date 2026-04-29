@@ -1,10 +1,14 @@
 <html>
     <head>
-        <script src="src/camera.js"></script>
         <link href="styles/style.css" rel="stylesheet"/>
     </head>
 
     <body onload="accessCamera()">
-        <canvas id="camCanvas"></canvas>
+        <div id="camera">
+            <canvas id="camCanvas"></canvas>
+            <button id="captureBtn">Capture</button>
+        </div>
+
+        <script src="src/camera.js"></script>
     </body>
 </html>

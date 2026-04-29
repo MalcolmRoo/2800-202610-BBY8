@@ -1,12 +1,14 @@
 let VIDEO = null;
 let CANVAS = null;
 let CONTEXT = null;
+let CAPTURE = document.getElementById("captureBtn");
 
 function accessCamera() {
     CANVAS = document.getElementById("camCanvas");
-    CANVAS = CANVAS.getContext("2d");
+    CONTEXT = CANVAS.getContext("2d");
     CANVAS.width = window.innerWidth;
     CANVAS.length = window.innerHeight;
+    
 
     let promise = navigator.mediaDevices.getUserMedia({video:true});
     promise.then(function(signal){
@@ -27,16 +29,17 @@ function updateCanvas() {
     window.requestAnimationFrame(updateCanvas);
 }
 
-/*
-CORRESPONDING HTML
-<html>
-    <head>
-        <script src="camera.js"></script>
-        <link href="style.css" rel="stylesheet"/>
-    </head>
 
-    <body onload="accessCamera()">
-        <canvas id="camCanvas"></canvas>
-    </body>
-</html>
-*/
+CAPTURE.addEventListener("click", (event) =>{
+    takePicture();
+    event.preventDefault();
+});
+
+
+function takePicture(){
+    CONTEXT.drawImage(VIDEO, 0, 0);//, width, height);
+    console.log("Button pressed");
+    const data = CANVAS.toDataURL("image/png");
+    console.log(data); //data is the image to be passed
+}
+
