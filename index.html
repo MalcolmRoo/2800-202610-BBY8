@@ -1,12 +1,40 @@
 <html>
-  <head>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <h1 id="title">This is my simple webpage</h1>
-    <div class="content clickable">Click Me</div>
-    <div class="content"></div>
 
-    <script src="app.js"></script>
-  </body>
+<head>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <nav>
+    <a href="settings.html">
+      <img src="settings" alt="settings" id="settings">
+    </a>
+  </nav>
+  <div class="container">
+    <div class="header">
+      <h1 id="title">Name</h1>
+    </div>
+    <div class="content">
+      <a href="camera.html">
+        <button id="capturebtn">
+          <img src="pic" alt="Capture Image">
+          <p>Take a Picture</p>
+        </button>
+      </a>
+
+      <span id="or">OR</span>
+
+      <a href="search.html">
+        <button id="searchbtn">
+          <img src="pic" alt="Search Image">
+          <p>Plant Search</p>
+        </button>
+      </a>
+    </div>
+  </div>
+
+
+  <script src="app.js"></script>
+</body>
+
 </html>
