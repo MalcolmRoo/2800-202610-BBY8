@@ -1,32 +1,44 @@
-//all plantData and .anything are placeholders for real data tags.
+// read URL params from PlantNet redirect
+const params = new URLSearchParams(window.location.search);
+const commonName = params.get("name") || "Unknown Plant";
+const latinName = params.get("latin") || "";
+const score = params.get("score") || "0";
 
+// fill in what we already have from PlantNet
+document.getElementById("common-name").textContent = commonName;
+document.getElementById("latin-name").textContent = latinName;
+document.getElementById("confidence").textContent = `${score}% confidence`;
+
+// this is , placeholder until plant data API is wired up....
 function displayPlant(plantData) {
-    const container = document.getElementById('plant-container');
-    
-    //edible class will change class name so the tag can be eaily customized with css red/green
-    const edibleClass = plantData.isEdible ? 'edible' : 'not-edible';
-    //edibleText will change the text in the tag to either edible or not edible
-    const edibleText = plantData.isEdible ? 'Edible' : 'Not Edible';
+  const edibleClass = plantData.isEdible ? "edible" : "not-edible";
+  const edibleText = plantData.isEdible ? "Edible" : "Not Edible";
 
-    container.innerHTML = `
-      <div class="plant-card">
-        <div class="plant-header">
-          <h1>${plantData.name}</h1>
-          <p class="latin-name">${plantData.latinName}</p>
-        </div>
-
-        <div class="status">
-          <span class="tag ${edibleClass}">${edibleText}</span>
-        </div>
-
-        <div class="description">
-          <p>${plantData.description}</p>
-        </div>
-
-        <div class="serving-suggestion">
-          <h4>Best Way to Serve</h4>
-          <p>${plantData.servingSuggestion}</p>
-        </div>
-      </div>
+  document.getElementById("edibility-info").innerHTML = `
+        <span class="${edibleClass}">${edibleText}</span>
+        <p>${plantData.description || "No description available"}</p>
     `;
+
+  document.getElementById("how-to-info").textContent =
+    plantData.servingSuggestion || "No preparation info available";
+
+  document.getElementById("hazard-info").textContent =
+    plantData.hazards || "No hazard info available";
+
+  if (plantData.image) {
+    const img = document.getElementById("plant-image");
+    img.src = plantData.image;
+    img.style.display = "block";
+  }
 }
+
+// just some mock data .
+const mockData = {
+  isEdible: true,
+  description: "Common edible plant found in urban areas.",
+  servingSuggestion: "Wash thoroughly before eating.",
+  hazards: "None known.",
+  image: null,
+};
+
+displayPlant(mockData);
