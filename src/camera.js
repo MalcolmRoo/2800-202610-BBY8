@@ -98,3 +98,5 @@ async function sendToPlantNet(imageBlob) {
     document.getElementById("captureBtn").disabled = false;
   }
 }
+
+
