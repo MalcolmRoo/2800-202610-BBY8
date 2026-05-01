@@ -1,17 +1,46 @@
-<html>
+<!doctype html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ForageSafe - Scan</title>
     <link href="/style.css" rel="stylesheet" />
   </head>
+  <body>
+    <!-- full screen camera canvas -->
+    <canvas id="camCanvas"></canvas>
 
-  <body onload="accessCamera()">
-    <div id="camera">
-      <canvas id="camCanvas"></canvas>
-      <button id="captureBtn">Capture</button>
+    <!-- UI overlay on top of camera -->
+    <div id="overlay">
+      <!-- top bar -->
+      <div id="top-bar">
+        <a href="/" id="back-btn">← Back</a>
+        <h1>Scan Plant</h1>
+      </div>
+
+      <!-- organ selector -->
+      <div id="organ-selector">
+        <button class="organ-btn active" data-organ="leaf">🌿 Leaf</button>
+        <button class="organ-btn" data-organ="flower">🌸 Flower</button>
+        <button class="organ-btn" data-organ="fruit">🍎 Fruit</button>
+        <button class="organ-btn" data-organ="bark">🌳 Bark</button>
+      </div>
+
+      <!-- bottom controls -->
+      <div id="bottom-bar">
+        <p id="hint">Point camera at the plant part</p>
+        <button id="captureBtn">Capture</button>
+      </div>
     </div>
 
-    <!-- ⭐ Add your script tags here -->
+    <!-- loading overlay — hidden until capture -->
+    <div id="loading-overlay" style="display: none">
+      <p id="loading-text">Analyzing with PlantNet...</p>
+      <p id="loading-sub">Checking Vancouver road proximity...</p>
+    </div>
+
     <script src="src/identify.js"></script>
-    <script src="src/plantData.js"></script>
     <script src="/camera.js"></script>
+    
   </body>
 </html>
