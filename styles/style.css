@@ -105,3 +105,9 @@ h1 { margin-bottom: 8px; color: #172815; font-size: 48px; text-align: center; }
 
 .row { display: flex; gap: 14px; }
 .row .card { flex: 1; }
+
+#camCanvas{
+  max-width: 80%;
+  aspect-ratio: 1;
+  object-fit: fill;
+}
